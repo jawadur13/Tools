@@ -22,6 +22,8 @@ export function ToolBrowser({ tools, categories }: Props) {
   }, [tools, query, category]);
 
   const chips = [{ slug: "all", name: "All tools" }, ...categories];
+  // Browsing everything reads better in sections; searches and filters stay a flat list.
+  const grouped = category === "all" && !query.trim();
 
   return (
     <div>
@@ -54,11 +56,26 @@ export function ToolBrowser({ tools, categories }: Props) {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((tool) => (
-          <ToolCard key={tool.slug} tool={tool} />
-        ))}
-      </div>
+      {grouped ? (
+        categories.map((c) => (
+          <section key={c.slug} className="mt-12">
+            <h2 className="text-lg font-semibold">{c.name}</h2>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered
+                .filter((t) => t.category === c.slug)
+                .map((tool) => (
+                  <ToolCard key={tool.slug} tool={tool} />
+                ))}
+            </div>
+          </section>
+        ))
+      ) : (
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((tool) => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
+        </div>
+      )}
       {filtered.length === 0 && (
         <p className="mt-10 text-center text-muted">No tools match “{query}” yet — more are coming soon.</p>
       )}
