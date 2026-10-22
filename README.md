@@ -10,12 +10,12 @@ npm run build   # production build
 
 ## Adding a tool
 
-1. Create `src/tools/<slug>/meta.ts` (name, category, SEO text, steps, FAQ) and `src/tools/<slug>/Tool.tsx` (a `"use client"` component, default export).
-2. Add the meta to `src/tools/registry.ts`.
-3. Add the component to `src/tools/loaders.tsx`.
-4. If it uses a new lucide icon, add it to `src/components/ToolIcon.tsx`.
+1. Create `src/tools/<slug>/meta.ts` (name, category, lucide icon, SEO text, steps, FAQ) and `src/tools/<slug>/Tool.tsx` (a `"use client"` component, default export). The folder name must equal the slug.
+2. Run `npm run tools:sync`. It regenerates `registry.ts`, `loaders.tsx` and `ToolIcon.tsx` — don't edit those by hand.
 
-The homepage grid, search, category pages, sitemap, related tools and 404 handling all pick it up automatically.
+The homepage, search, category pages, sitemap, related tools and 404 handling all pick it up automatically.
+
+Shared building blocks: `FileDrop`, `FileList` and `CopyButton` in `src/components`, file helpers in `src/lib/files.ts`, and `downloadAsZip` in `src/lib/zip.ts` for multi-file downloads.
 
 ## Deploying
 
