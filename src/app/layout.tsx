@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { CommandPalette } from "@/components/CommandPalette";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { toSummary } from "@/lib/search";
 import { site } from "@/lib/site";
+import { categories } from "@/tools/categories";
+import { tools } from "@/tools/registry";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <CommandPalette tools={tools.map(toSummary)} categories={categories} />
       </body>
     </html>
   );
