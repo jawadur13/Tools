@@ -7,7 +7,7 @@ type Status = "idle" | "speaking" | "paused";
 type Chunk = { text: string; offset: number };
 
 const SAMPLE =
-  "Welcome to JR Tools. This free text to speech tool reads any text aloud using the voices built into your device. Paste your own text, choose a voice and press play.";
+  "Welcome to Toolbox. This free text to speech tool reads any text aloud using the voices built into your device. Paste your own text, choose a voice and press play.";
 
 /** Split into sentence-sized chunks; long single utterances get cut off in some browsers. */
 function chunk(text: string, max = 220): Chunk[] {

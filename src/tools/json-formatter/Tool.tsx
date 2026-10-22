@@ -6,7 +6,7 @@ import { downloadBlob } from "@/lib/files";
 
 type Indent = "2" | "4" | "tab";
 
-const SAMPLE = `{"name":"JR Tools","url":"https://tools.jawadurrafid.com","free":true,"tools":["QR Code Generator","Image Compressor","Merge PDF"],"stats":{"tools":25,"uploads":0}}`;
+const SAMPLE = `{"name":"Toolbox","url":"https://tools.jawadurrafid.com","free":true,"tools":["QR Code Generator","Image Compressor","Merge PDF"],"stats":{"uploads":0}}`;
 
 /** Turns a JSON.parse error into a message with line and column when the engine reports a position. */
 function describeError(input: string, error: unknown): string {

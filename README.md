@@ -1,4 +1,6 @@
-# JR Tools — tools.jawadurrafid.com
+# Toolbox — tools.jawadurrafid.com
+
+*Every tool you need. Nothing uploaded.*
 
 Free online tools that run entirely in the browser. Built with Next.js 16, Tailwind v4, `pdf-lib` and `qrcode`.
 

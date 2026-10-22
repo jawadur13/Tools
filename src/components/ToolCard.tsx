@@ -12,10 +12,10 @@ export function ToolCard({ tool }: { tool: ToolMeta }) {
         <ToolIcon name={tool.icon} className="size-5" />
       </span>
       <span className="min-w-0">
-        <span className="flex items-center gap-2 font-semibold group-hover:text-accent">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1 font-semibold group-hover:text-accent">
           {tool.name}
           {tool.popular && (
-            <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent">
+            <span className="shrink-0 rounded-full bg-highlight-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-highlight">
               Popular
             </span>
           )}

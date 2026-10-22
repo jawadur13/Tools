@@ -2,6 +2,7 @@ import Link from "next/link";
 import { categories } from "@/tools/categories";
 import { getToolsByCategory } from "@/tools/registry";
 import { otherProjects, site } from "@/lib/site";
+import { Logo } from "./Logo";
 
 export function SiteFooter() {
   const activeCategories = categories.filter((c) => getToolsByCategory(c.slug).length > 0);
@@ -10,9 +11,12 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-surface">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <p className="font-bold">{site.name}</p>
-          <p className="mt-2 max-w-sm text-sm text-muted">
-            Free online tools that run entirely in your browser. Your files never leave your device.
+          <p className="flex items-center gap-2 font-bold">
+            <Logo size={24} />
+            {site.name}
+          </p>
+          <p className="mt-3 max-w-sm text-sm text-muted">
+            {site.tagline} Free online tools that run entirely in your browser, so your files never leave your device.
           </p>
         </div>
         <div>

@@ -1,9 +1,12 @@
 export const site = {
-  name: "JR Tools",
+  name: "Toolbox",
   url: "https://tools.jawadurrafid.com",
-  title: "JR Tools — Free Online Tools for Images, PDF, Text & Marketing",
+  tagline: "Every tool you need. Nothing uploaded.",
+  title: "Toolbox — Free Online Tools for Images, PDF, Text & More",
   description:
     "Free, fast and private online tools. Compress images, merge PDFs, make QR codes, count words and more — everything runs in your browser, nothing is uploaded.",
+  /** Brand colors for places CSS variables can't reach (icons, OG images, manifest). */
+  colors: { accent: "#5b4cf0", highlight: "#f5a524", ink: "#14141f", paper: "#f7f7fb" },
   author: { name: "Jawadur Rafid", url: "https://projects.jawadurrafid.com" },
 };
 

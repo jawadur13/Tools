@@ -1,5 +1,6 @@
 import { Gift, Lock, Zap } from "lucide-react";
 import { ToolBrowser } from "@/components/ToolBrowser";
+import { site } from "@/lib/site";
 import { categories } from "@/tools/categories";
 import { getToolsByCategory, tools } from "@/tools/registry";
 
@@ -20,10 +21,13 @@ export default function Home() {
           {tools.length} free tools · 100% in your browser
         </p>
         <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
-          Every online tool you need, <span className="text-accent">in one place</span>
+          Every tool you need.
+          <br />
+          <span className="text-accent">Nothing uploaded.</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg text-muted">
-          Compress images, merge PDFs, create QR codes and more. Fast, free and private — nothing is ever uploaded.
+          {site.name} has {tools.length} free tools for images, PDFs, text, marketing and more. They run right in your
+          browser, so your files never leave your device.
         </p>
       </section>
 
