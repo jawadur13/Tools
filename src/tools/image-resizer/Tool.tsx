@@ -4,6 +4,7 @@ import { Download, Loader2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { FileDrop } from "@/components/FileDrop";
 import { baseName, downloadBlob, formatBytes, uid } from "@/lib/files";
+import { downloadAsZip } from "@/lib/zip";
 
 type Mode = "pixels" | "percent" | "preset";
 type Item = { id: string; file: File; thumb: string; width: number; height: number };
@@ -132,10 +133,11 @@ export default function ImageResizer() {
 
   function downloadAll() {
     if (!current) return;
-    items.forEach((item, i) => {
+    const entries = items.flatMap((item) => {
       const r = current[item.id];
-      if (r) setTimeout(() => downloadBlob(r.blob, fileName(item, r)), i * 300);
+      return r ? [{ name: fileName(item, r), blob: r.blob }] : [];
     });
+    downloadAsZip(entries, "resized-images.zip");
   }
 
   const modes: { id: Mode; label: string }[] = [

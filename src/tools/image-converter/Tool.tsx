@@ -4,6 +4,7 @@ import { Download, Loader2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { FileDrop } from "@/components/FileDrop";
 import { baseName, downloadBlob, formatBytes, uid } from "@/lib/files";
+import { downloadAsZip } from "@/lib/zip";
 
 type Target = "image/jpeg" | "image/png" | "image/webp";
 type Item = { id: string; file: File; thumb: string; result?: Blob; error?: string };
@@ -75,9 +76,10 @@ export default function ImageConverter() {
   }
 
   function downloadAll() {
-    items.forEach((item, i) => {
-      if (item.result) setTimeout(() => downloadBlob(item.result!, `${baseName(item.file.name)}.${ext}`), i * 300);
-    });
+    const entries = items.flatMap((item) =>
+      item.result ? [{ name: `${baseName(item.file.name)}.${ext}`, blob: item.result }] : [],
+    );
+    downloadAsZip(entries, "converted-images.zip");
   }
 
   return (

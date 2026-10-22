@@ -4,6 +4,7 @@ import { Download, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { FileDrop } from "@/components/FileDrop";
 import { baseName, downloadBlob, formatBytes, uid } from "@/lib/files";
+import { downloadAsZip } from "@/lib/zip";
 
 type Format = "same" | "image/jpeg" | "image/webp" | "image/png";
 
@@ -101,9 +102,8 @@ export default function ImageCompressor() {
   }
 
   function downloadAll() {
-    items.forEach((item, i) => {
-      if (item.result) setTimeout(() => downloadBlob(item.result!.blob, outputName(item)), i * 300);
-    });
+    const entries = items.flatMap((item) => (item.result ? [{ name: outputName(item), blob: item.result.blob }] : []));
+    downloadAsZip(entries, "compressed-images.zip");
   }
 
   const totalBefore = items.reduce((s, i) => s + i.file.size, 0);

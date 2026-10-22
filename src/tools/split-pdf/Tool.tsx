@@ -5,6 +5,7 @@ import { PDFDocument } from "pdf-lib";
 import { useState } from "react";
 import { FileDrop } from "@/components/FileDrop";
 import { baseName, downloadBlob, formatBytes } from "@/lib/files";
+import { downloadAsZip } from "@/lib/zip";
 
 type Mode = "range" | "every";
 type Loaded = { file: File; pages: number };
@@ -65,14 +66,14 @@ export default function SplitPdf() {
         (await out.copyPages(source, parsed)).forEach((p) => out.addPage(p));
         downloadBlob(await pdfBlob(out), `${name}-pages-${range.replace(/\s+/g, "")}.pdf`);
       } else {
+        const entries = [];
         for (let i = 0; i < loaded.pages; i++) {
           const out = await PDFDocument.create();
           const [page] = await out.copyPages(source, [i]);
           out.addPage(page);
-          downloadBlob(await pdfBlob(out), `${name}-page-${i + 1}.pdf`);
-          // Browsers drop rapid-fire downloads, so give each one a moment.
-          await new Promise((r) => setTimeout(r, 300));
+          entries.push({ name: `${name}-page-${i + 1}.pdf`, blob: await pdfBlob(out) });
         }
+        await downloadAsZip(entries, `${name}-pages.zip`);
       }
     } catch {
       setError("Something went wrong while splitting this PDF.");

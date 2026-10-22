@@ -4,6 +4,7 @@ import { Download, FileText, Loader2, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { FileDrop } from "@/components/FileDrop";
 import { baseName, downloadBlob, formatBytes } from "@/lib/files";
+import { downloadAsZip } from "@/lib/zip";
 
 type Format = "image/jpeg" | "image/png";
 type Page = { index: number; blob: Blob; url: string; width: number; height: number };
@@ -82,7 +83,10 @@ export default function PdfToJpg() {
   const name = (p: Page) => `${baseName(file?.name ?? "document")}-page-${p.index}.${ext}`;
 
   function downloadAll() {
-    current.forEach((p, i) => setTimeout(() => downloadBlob(p.blob, name(p)), i * 300));
+    downloadAsZip(
+      current.map((p) => ({ name: name(p), blob: p.blob })),
+      `${baseName(file?.name ?? "document")}-images.zip`,
+    );
   }
 
   if (!file) {
