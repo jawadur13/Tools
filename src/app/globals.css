@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f1f7;
+  --line: #e4e4ee;
+  --foreground: #14141f;
+  --muted: #5d5d73;
+  --accent: #5b4cf0;
+  --accent-hover: #4a3bdb;
+  --accent-soft: #ecebff;
+  --accent-fg: #ffffff;
+  --success: #138a4f;
+  --danger: #c4323b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0d14;
+    --surface: #16161f;
+    --surface-2: #1e1e2a;
+    --line: #2a2a3a;
+    --foreground: #ececf4;
+    --muted: #9a9ab0;
+    --accent: #8a7dff;
+    --accent-hover: #9d92ff;
+    --accent-soft: #24213f;
+    --accent-fg: #0d0d14;
+    --success: #3ccf86;
+    --danger: #ff6b73;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-accent-fg hover:bg-accent-hover;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-surface hover:bg-surface-2;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-surface;
+}
+@utility field {
+  @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-medium;
+}
