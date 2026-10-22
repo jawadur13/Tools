@@ -21,3 +21,6 @@ export type ToolMeta = {
   faq: { q: string; a: string }[];
   popular?: boolean;
 };
+
+/** The fields needed to list and search tools — what gets sent to the browser. */
+export type ToolSummary = Pick<ToolMeta, "slug" | "name" | "tagline" | "category" | "icon" | "keywords" | "popular">;
