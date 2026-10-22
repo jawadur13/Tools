@@ -1,4 +1,4 @@
-export type CategorySlug = "image" | "pdf" | "marketing" | "text" | "dev";
+export type CategorySlug = "image" | "pdf" | "marketing" | "text" | "dev" | "calculator";
 
 export type Category = {
   slug: CategorySlug;

@@ -26,6 +26,11 @@ export const categories: Category[] = [
     name: "Developer Tools",
     description: "Formatters, encoders and converters for everyday dev work.",
   },
+  {
+    slug: "calculator",
+    name: "Calculators",
+    description: "Quick everyday calculators for percentages, ages and more.",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
