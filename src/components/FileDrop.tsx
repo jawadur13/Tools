@@ -16,8 +16,10 @@ export function FileDrop({ accept, multiple = true, label, hint, onFiles }: Prop
   const input = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
 
-  const acceptList = accept.split(",").map((s) => s.trim());
+  const acceptList = accept.split(",").map((s) => s.trim()).filter(Boolean);
+  const acceptsAll = acceptList.length === 0 || acceptList.includes("*/*");
   const isAccepted = (file: File) =>
+    acceptsAll ||
     acceptList.some((a) =>
       a.endsWith("/*") ? file.type.startsWith(a.slice(0, -1)) : file.type === a || file.name.toLowerCase().endsWith(a),
     );
